@@ -1,4 +1,4 @@
-from controller import index_controller
+from controller import index_controller,rest_controller
 from flask import render_template
 from flask_restful import Resource,Api
 
@@ -11,7 +11,7 @@ def return_routes(app):
         view, name = index_controller.render()
         return render_template(view ,name=name)
 
-    class Test(Resource):
-        def get(self):
-            return {"asd": 123}
-    api.add_resource(Test,"/test")
+    def return_rest():
+        rest = rest_controller.RestController()
+        return rest.model
+    api.add_resource(return_rest(),"/test")
